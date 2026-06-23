@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>曾紫云 — AI 产品经理</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --paper: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #5c5c5c;
+    --text-tertiary: #8c8c8c;
+    --accent: #c4543e;
+    --accent-muted: #f2e8e4;
+    --border: #e0dcd7;
+    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 24px rgba(0,0,0,.04);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.72;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 32px auto 80px;
+    background: var(--paper);
+    box-shadow: var(--shadow);
+    padding: 60px 64px;
+    border-radius: 2px;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm 16mm;
+  }
+
+  @media print {
+    * {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      background: #fff;
+      font-size: 10.5px;
+      line-height: 1.5;
+      color: #000;
+      orphans: 2;
+      widows: 2;
+    }
+
+    /* ---- hide non-essential ---- */
+    .page > div:first-child { display: none; } /* 返回链接 */
+
+    /* ---- page container ---- */
+    .page {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    /* ---- header ---- */
+    .header {
+      margin-bottom: 14px;
+    }
+    .name {
+      font-size: 24px;
+      margin-bottom: 2px;
+      color: #000;
+    }
+    .contact {
+      font-size: 9px;
+      color: #555;
+    }
+    .contact a {
+      color: #555;
+      border-bottom-color: #ccc;
+    }
+
+    /* ---- section ---- */
+    .section {
+      margin-top: 12px;
+    }
+    .section-title {
+      font-size: 13px;
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom-width: 1px;
+      color: #000;
+    }
+    .section-title::after { display: none; }
+    .section-title .en {
+      font-size: 10px;
+      color: #777;
+    }
+
+    /* ---- entry ---- */
+    .entry {
+      margin-bottom: 8px;
+      page-break-inside: avoid;
+    }
+    .entry-header {
+      margin-bottom: 2px;
+    }
+    .entry-title {
+      font-size: 11px;
+      color: #000;
+    }
+    .entry-role {
+      font-size: 9.5px;
+      color: #666;
+    }
+    .entry-date {
+      font-size: 9px;
+      color: #888;
+    }
+    .entry-desc {
+      font-size: 10px;
+      padding-left: 10px;
+      border-left: 2px solid #d4c5c0;
+    }
+    .entry-desc p {
+      margin-bottom: 1px;
+      line-height: 1.4;
+    }
+    .entry-desc p strong {
+      color: #000;
+      font-weight: 600;
+    }
+    .entry-desc p::before {
+      width: 3px; height: 3px;
+      margin-right: 5px;
+      background: var(--accent);
+      opacity: 0.6;
+    }
+
+    /* ---- skills ---- */
+    .skill-lines {
+      font-size: 9.5px;
+      columns: 2;
+      column-gap: 24px;
+    }
+    .skill-lines p {
+      margin-bottom: 3px;
+      line-height: 1.45;
+      break-inside: avoid;
+    }
+
+    /* ---- course list ---- */
+    .course-list {
+      font-size: 10px;
+      padding-left: 10px;
+    }
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .header-left { flex: 1; }
+  .header-right {
+    flex-shrink: 0;
+    margin-left: 28px;
+  }
+  .photo {
+    width: 72px;
+    border-radius: 3px;
+    border: 1.5px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    display: block;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .name {
+    font-family: 'Noto Serif SC', 'DM Serif Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .contact {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-bottom: 6px;
+    letter-spacing: .02em;
+  }
+  .contact a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color .2s, border-color .2s;
+  }
+  .contact a:hover { color: var(--accent); border-color: var(--accent); }
+  .contact span { margin: 0 6px; color: var(--border); }
+
+  .section { margin-top: 32px; }
+  .section:first-of-type { margin-top: 0; }
+
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 1px;
+  }
+  .section-title .en {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-tertiary);
+    letter-spacing: .06em;
+    font-style: italic;
+  }
+
+  .entry { margin-bottom: 18px; }
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+  .entry-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .entry-role {
+    font-weight: 400;
+    color: var(--text-tertiary);
+    font-size: 13px;
+    margin-left: 4px;
+  }
+  .entry-date {
+    font-size: 12.5px;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+  }
+  .entry-sub {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  .entry-desc {
+    font-size: 14px;
+    color: var(--text);
+    padding-left: 14px;
+    border-left: 2px solid var(--accent-muted);
+  }
+  .entry-desc p {
+    margin-bottom: 2px;
+    line-height: 1.5;
+  }
+  .entry-desc p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .entry-desc p::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    opacity: .5;
+  }
+
+  .skill-lines { font-size: 13px; color: var(--text); }
+  .skill-lines p { margin-bottom: 6px; line-height: 1.55; }
+  .skill-lines strong { font-weight: 600; color: var(--text); }
+
+  .course-list {
+    font-size: 13px;
+    color: var(--text-secondary);
+    columns: 2;
+    column-gap: 32px;
+    padding-left: 14px;
+    border-left: 2px solid var(--accent-muted);
+  }
+  .course-list p {
+    margin-bottom: 3px;
+    break-inside: avoid;
+  }
+  .course-list .cn { color: var(--text); font-weight: 500; }
+  .course-list .en { color: var(--text-tertiary); font-size: 12px; }
+
+  @media (max-width: 700px) {
+    .page { margin: 12px; padding: 28px 20px; }
+    .header { flex-direction: column-reverse; align-items: flex-start; }
+    .header-right { margin-left: 0; margin-bottom: 14px; }
+    .photo { width: 56px; }
+    .name { font-size: 28px; }
+    .skill-lines p { margin-bottom: 8px; }
+    .course-list { columns: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+
+  <div class="header">
+    <div class="header-left">
+      <div class="name">曾紫云</div>
+      <div class="contact">
+        深圳<span>·</span>15013323642<span>·</span>
+        <a href="mailto:25417681@life.hkbu.edu.hk">25417681@life.hkbu.edu.hk</a>
+        <span>·</span><a href="https://github.com/purplecloud0342-source" target="_blank">github.com/purplecloud0342-source</a>
+      </div>
+    </div>
+    <div class="header-right">
+      <img class="photo" src="photo.jpg" alt="曾紫云">
+    </div>
+  </div>
+
+  <!-- 求职意向 -->
+  <div class="section">
+    <div class="section-title">求职意向<span class="en">Objective</span></div>
+    <div class="skill-lines">
+      <p>AI 产品经理（实习），2027 届硕士在读。3 个从 0 到 1 的 AI 产品：每个都踩过选型错误和方案推翻，能从模型评测、Prompt 调优、失败兜底的角度讲清楚「为什么这么做而不是那么做」。既写得了代码验证想法，也做得了产品取舍。</p>
+    </div>
+  </div>
+
+  <!-- 教育背景 -->
+  <div class="section">
+    <div class="section-title">教育<span class="en">Education</span></div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">香港浸会大学<span class="entry-role">AI 与数字媒体 硕士</span></span>
+        <span class="entry-date">2025.9 – 至今</span>
+      </div>
+      <div class="entry-desc">
+        <p>核心课程：AIDM 7040 生成式 AI（GAN 训练、Prompt 迭代）· 7340 AI for Digital Media（LLM 集成）· 7330 数据分析与可视化 · 7390 数据挖掘 · 7880 高级机器学习（XGBoost、Bias Audit）· 7350 Web 与 AI</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">广东外语外贸大学<span class="entry-role">网络与新媒体 学士</span></span>
+        <span class="entry-date">2020 – 2024</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 项目经历 -->
+  <div class="section">
+    <div class="section-title">项目经历<span class="en">Projects</span></div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">知至 — AI 知识管理工具<span class="entry-role">多 Agent 浏览器扩展，从 0 到 1</span></span>
+        <span class="entry-date">2026.06 · <a href="https://github.com/purplecloud0342-source/SkillFlow" target="_blank">GitHub</a></span>
+      </div>
+      <div class="entry-desc">
+        <p><strong>模型选型：为什么是多 Agent 而不是单一模型？</strong>最早用单一 LLM 做「一次性分析+拆解」，结果发现模型同时处理「理解内容」「归纳观点」「生成计划」时输出很泛、抓不住重点。拆成四个专职 Agent（Observer 追踪 → Analyst 拆解 → Kickstart 生成步骤 → Reflection 模式识别），每个只做一件事，Agent 间上下游引用。评测对比：多 Agent 输出的行动计划可执行率明显高于单模型——单模型容易跳过具体步骤直接给结论</p>
+        <p><strong>提示词调优：</strong>Analyst Agent 早期 Prompt 只要求「总结核心观点」，产出和通用摘要没区别。迭代后明确要求「提取可行动的观点 + 标注观点来源的时间戳/段落」，观点可追溯性从模糊提升到每条观点都能定位原文。Kickstart Agent 的 Prompt 经历三轮迭代——从「生成学习计划」到「生成可执行的下一步 + 预估耗时 + 难度标注」，用户反馈「知道这周干什么」的比例明显提升</p>
+        <p><strong>失败与修正：</strong>① 第一版把所有 AI 能力塞进 Chrome 扩展弹窗，自己用了两天就发现问题——弹窗空间太小，复杂分析结果放不下，关闭弹窗后什么也找不回来。推翻重做，把分析结果和管理能力迁到独立 Web 面板。② 手写各平台嗅探代码抓内容，B站/公众号/小红书纷纷失败，失败率极高。引入 defuddle 覆盖 30+ 平台做兜底——不是自己写一套完美的抓取，而是承认边界、用已有方案</p>
+        <p><strong>成果：</strong>管线端到端验证通过，支持 B站、YouTube、公众号、GitHub、网页等主流信息源。为早期用户制作完整上手指南</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">问津 — 职业探索平台<span class="entry-role">产品设计 + 独立全栈</span></span>
+        <span class="entry-date">2026.05 – 至今 · <a href="https://b9d30e9d.wenjin-4xc.pages.dev/work" target="_blank">wenjin-4xc.pages.dev</a></span>
+      </div>
+      <div class="entry-desc">
+        <p><strong>匹配策略选型：为什么手动结构化而不是机器学习？</strong>评估过两种方案——用 LLM 实时匹配 vs 预结构化数据库 + 规则匹配。LLM 方案测试发现匹配结果不稳定，同一个用户重复测试给出不同职业推荐，且无法解释「为什么推荐这个」。选择手动构建 533 个职业的结构化数据库，每个附带匹配逻辑和可执行步骤，匹配结果可解释、可复现。代价是工作量，换来的是一致性和用户信任</p>
+        <p><strong>提示词与算法调优：</strong>早期匹配只输出职业列表，用户反馈「看完还是不知道怎么办」。迭代后每个匹配结果附带 ① 你为什么适合的原因 ② 本周可执行的下一步 ③ 该职业的3年发展路径。从「告诉用户你是谁」变成「告诉用户你能做什么」</p>
+        <p><strong>失败与修正：</strong>① 内容组织——第一版按功能模块平铺（测评/浏览/时间线），用户找不到入口。推翻后参照斯坦福人生设计课重构为六步叙事流（自画像 → 算法匹配 → 自由探索 → 5年时间线 → 行动清单 → 岔路口反思），每一步自然引导下一步。② 云同步方案——做过技术准备，但用户测试时发现职业焦虑场景下对隐私极度敏感，有人明确说「如果数据上传我就不填真实想法」。确认后彻底放弃云方案，所有数据只存 localStorage——不上传在此场景下反而是卖点</p>
+        <p><strong>成果：</strong>六章体验全部上线，覆盖 533 个职业。用户可从「我是谁」走到「这周干什么」的完整闭环</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Token 资源足迹 — 数据叙事网页<span class="entry-role">独立完成 · 概念到上线</span></span>
+        <span class="entry-date">2026 · <a href="https://7350final-4lt8.vercel.app/" target="_blank">7350final-4lt8.vercel.app</a></span>
+      </div>
+      <div class="entry-desc">
+        <p><strong>产品形态选型：为什么不做一个互动数据仪表盘？</strong>做过两个方案对比：A) 交互式仪表盘，用户自己探索数据；B) 单页滚动叙事，带用户走一条设计好的故事线。排除 A 的理由：目标用户是普通 AI 使用者，不是数据分析师——给他们仪表盘等于把认知负担丢回给用户。选 B 因为目标是「感知建立」，形式必须服从这个目标</p>
+        <p><strong>换算策略与效果：</strong>把抽象 Token 消耗换算成日常单位（一瓶水、一度电、一个人工作几小时）。测试过纯数字展示 vs 类比换算——纯数字（如「1700 万升水」）用户看了无感，换算后（「够一个人喝 XX 年」）才有「wow」反应。关键设计判断：不是说教式地「AI 很费资源」，而是把事实放在那让用户自己得出结论</p>
+        <p><strong>成果：</strong>从概念、数据整理、视觉设计到前端开发独立完成并上线。该项目的「形式选择要服从沟通目标」的方法论，可直接迁移至 AI 产品的用户引导和功能教育设计</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 工作经验 -->
+  <div class="section">
+    <div class="section-title">工作经验<span class="en">Experience</span></div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">北京映美传媒<span class="entry-role">剪辑师</span></span>
+        <span class="entry-date">2024.9 – 2025.1</span>
+      </div>
+      <div class="entry-desc">
+        <p>独立交付 3 个商业广告/微电影的完整后期，从素材到成片一人负责。这段经历训练了在给定素材约束下做最优方案的判断力——不可重拍，必须判断哪些片段可用、为不同表演者定制不同策略。与客户沟通模糊需求并将其翻译为可执行的节奏和色彩方案</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">教育数据分析<span class="entry-role">实习</span></span>
+        <span class="entry-date">2023 – 2024</span>
+      </div>
+      <div class="entry-desc">
+        <p>为北京多所初高中做成绩数据分析，从分数分布中识别学生薄弱环节，输出分析报告协助校方制定教学改进方案。该经历的数据拆解和从数据中发现问题、推动决策的能力，可直接迁移至产品效果评测与数据驱动迭代</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 技能 -->
+  <div class="section">
+    <div class="section-title">技能<span class="en">Skills</span></div>
+    <div class="skill-lines">
+      <p><strong>产品：</strong>需求分析 · 竞品分析 · 用户调研 · MVP 验证 · 数据驱动迭代 · PRD 撰写</p>
+      <p><strong>AI：</strong>Agent 架构与对话流设计 · Prompt 工程 · LLM API 集成 · RAG</p>
+      <p><strong>技术：</strong>TypeScript / JavaScript · React · Python · SQL · 数据可视化 · Cloudflare Pages / Vercel</p>
+      <p><strong>语言：</strong>英语六级 · 粤语</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
