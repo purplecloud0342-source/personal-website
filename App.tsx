@@ -7,6 +7,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+// Asset URL helper for GitHub Pages. Reads base from window.__BASE_URL__
+// (set in index.html via <script>), which esbuild cannot inline.
+// This ensures paths get the correct /personal-website/ prefix at runtime.
+declare global { interface Window { __BASE_URL__: string; } }
+function asset(path: string): string {
+  return window.__BASE_URL__ + path;
+}
+
 // --- i18n ---
 type Lang = 'en' | 'zh';
 
@@ -97,8 +105,8 @@ const t = {
         title: { en: 'TourBox Elite – Product Ad', zh: 'TourBox Elite 产品广告' },
         role: { en: 'Editor + Colorist', zh: '剪辑 + 调色' },
         year: '2025',
-        image: '/images/project1.png',
-        images: ['/images/project1.png', '/images/project.png'],
+        image: 'images/project1.png',
+        images: ['images/project1.png', 'images/project.png'],
         videoUrl: '//player.bilibili.com/player.html?bvid=BV1T87T6mESa&page=1&high_quality=1&danmaku=0',
         desc: { en: "Context: A TourBox Elite product ad working with five performers' pre-shot footage. Each performer required a customized approach — different editing rhythms and color directions to match their individual styles.\n\nEditing Strategy: Some sections breathe, some punch. The rhythm shifts match each performer's energy, while the color grade follows the same logic — warm and soft for the sunlit female segment, metallic and high-contrast for the hip-hop male segment. Working within given constraints to bring out each person's distinct feel, from raw footage to finished commercial.", zh: '项目背景：TourBox Elite 产品广告，面对五位表演者的预拍素材，为每位表演者定制差异化的剪辑节奏和调色方向。\n\n剪辑策略：有些段落快，有些段落慢下来呼吸，节奏切换匹配每位表演者的能量。调色也按同样逻辑走——阳光女性走柔和暖调，嘻哈男性突出金属质感与高对比。在给定的素材限制里，用节奏和色彩讲出每个人不同的感觉，从素材到成片独立交付。' },
         tags: ['DaVinci Resolve', '剪辑', '调色', '商业广告'],
@@ -108,8 +116,8 @@ const t = {
         title: { en: 'Defei — Ad Campaign', zh: '德妃广告成片' },
         role: { en: 'Editor + Colorist', zh: '剪辑 + 调色' },
         year: '2025',
-        image: '/images/thumb-德妃广告.jpg',
-        videoFile: '/videos/德妃广告成片1.mp4',
+        image: 'images/thumb-德妃广告.jpg',
+        videoFile: 'videos/德妃广告成片1.mp4',
         desc: { en: "Color Grading: Primary correction used curves and color wheels to set black and white points, sculpting light and shadow across faces and product to create a luminous, soft quality that conveys the skin-activating dynamic. The secondary grade emphasized white and violet color blocks to align with Defei's purple perilla brand palette, adding texture and a premium feel — qualifiers and window tools preserved natural skin tones throughout.\n\nEditing: Opens with the male star as a scientist in fast-cut laboratory action, building tension and anticipation. Product showcase shifts to slow motion — the perilla toner droplet suspended mid-fall, paired with sound design to amplify visual and auditory impact. The 'skin activation' motif repeats the reach-touch-illuminate gesture, the glow of a light sphere signaling the breakthrough moment the product awakens the skin's own healing power. Closes on the star's satisfied gaze at the bottle.", zh: '调色：先调光——用曲线和色轮确定黑白场，通过光影对比让人物面部更有光感、更加柔和，传达产品激活肌肤的动态过程。后调色突出白色和紫色色块，以符合德妃紫苏水乳的产品色调，同时用限定器和窗口工具保持人物肤色，增加画面质感和高级感。\n\n剪辑：以男明星饰演的科学家在实验室忙碌开场，快切手法展示严谨的实验过程，营造紧张期待的氛围。产品展示转为慢动作——紫苏水乳滴落瞬间以升格呈现，配合音效增强视觉听觉冲击力。激活肌肤以点亮光球的创意手法，重复伸手—触摸—灯亮的镜头，强调产品突破吸收障碍、激活自然愈肌之力的效果。结尾以男明星满意注视产品收束。' },
         tags: ['剪辑', '调色', '商业广告'],
       },
@@ -118,8 +126,8 @@ const t = {
         title: { en: "37 Interactive — Big V Sharing Vlog", zh: '三七互娱《大V分享》活动vlog' },
         role: { en: 'Editor + Colorist', zh: '剪辑 + 调色' },
         year: '2025',
-        image: '/images/06大V-封面.jpg',
-        images: ['/images/截屏2026-06-23 01.45.34.png', '/images/截屏2026-06-23 01.46.11.png'],
+        image: 'images/06大V-封面.jpg',
+        images: ['images/截屏2026-06-23 01.45.34.png', 'images/截屏2026-06-23 01.46.11.png'],
         desc: { en: "Event: A documentary-style recap for 37 Interactive Entertainment's flagship sharing event. Multiple influencers with millions of followers and industry thought leaders gathered for deep conversations around the theme 'Guangdong Life Philosophy.'\n\nEditing: Multi-camera editing weaves keynote wide shots, guest close-ups, and audience reactions into a cohesive narrative. Dynamic subtitle packaging and curated golden quotes serve as transitions and emotional peaks.\n\nVisual Design: The brand's signature purple runs throughout, reinforcing identity. Visualized subtitles turn abstract ideas into tangible moments, balancing documentary authenticity with engaging watchability.", zh: '活动背景：为三七互娱制作的大型分享活动纪实视频。活动邀请多位百万粉丝级头部博主与行业意见领袖，围绕"广东生活哲学"主题展开深度对话。\n\n剪辑手法：多机位剪辑巧妙切换演讲全景、嘉宾特写与观众反应镜头，构建完整叙事。动态字幕包装与精准抓取嘉宾金句作为转场与高潮点。\n\n视觉设计：三七互娱紫色调贯穿全片强化品牌识别度，图文结合的字幕设计将抽象观点具象化呈现，平衡纪实感与观赏性。' },
         tags: ['剪辑', '调色', '活动纪实', '多机位'],
       },
@@ -128,7 +136,7 @@ const t = {
         title: { en: 'Dameikang Microfilm — Meet a Better Self', zh: '达美康微电影《遇见更好的自己》' },
         role: { en: 'Editor + Colorist', zh: '剪辑 + 调色' },
         year: '2025',
-        image: '/images/达美康-封面.png',
+        image: 'images/达美康-封面.png',
         videoUrl: '//player.bilibili.com/player.html?bvid=BV1KQ7K6CEV1&page=1&high_quality=1&danmaku=0',
         desc: { en: "Narrative: A brand microfilm for Dameikang weaving two timelines through cross-cutting — a middle-aged man encounters his younger self, their conversation threading through memories of both. The film builds toward the question 'Have I become the person you wanted me to be?', ultimately arriving at self-acceptance: the regrets and missteps of the past are what shaped him into who he is today.\n\nEditing — Flashbacks & Dissolves: Dissolves link the two characters across time — a photograph close-up blurs into a 2008 memory, expressing different emotional states while transitioning between spaces.\n\nEditing — Sound Design: Music and sound effects deepen emotional texture. 2008 Beijing Olympics broadcasts anchor the period; colleagues' and family members' voices press in during office and drunken-return scenes, rendering the protagonist's inner state through external audio.\n\nEditing — Jump Cuts: In the hospital waiting sequence, jump cuts fracture eating, drinking, and reviewing documents into separate actions. The rhythmic segmentation stretches stillness, making the weight of waiting tangible.", zh: '叙事：达美康品牌微电影，双线交叉叙事——中年自己与青年自己相遇交谈，穿插两人回忆，最终追问"我变成你想要的样子了吗"，达成自我接纳：尽管过去有遗憾和错误，但这些都是塑造今天自己的重要因素。\n\n剪辑 — 闪回与叠化：使用叠化关联两个主角，既表现人物不同的状态和情绪，也进行时空转场。当男主角拿起照片时，通过模糊效果和特写镜头过渡到2008年回忆场景。\n\n剪辑 — 声音设计：利用音乐和音效增强情感表达。回忆场景加入2008年北京奥运会背景声增加时代感；办公室和醉酒回家场景加入同事、家人的催促和对白，通过外部声音渲染主角内心情绪。\n\n剪辑 — 跳跃剪辑：医院等待场景使用跳切分割动作，将吃东西、喝水和看资料三个动作分切，以节奏化的断裂强调等待时间之久。' },
         tags: ['剪辑', '调色', '微电影', '叙事'],
@@ -138,7 +146,7 @@ const t = {
         title: { en: 'Lingnan Impression × Big Time — Startup Competition Documentary', zh: '岭南印象园X大时空 创业比赛纪录片' },
         role: { en: 'Editor + Colorist', zh: '剪辑 + 调色' },
         year: '2025',
-        image: '/images/岭南印象园-封面.jpg',
+        image: 'images/岭南印象园-封面.jpg',
         videoUrl: '//player.bilibili.com/player.html?bvid=BV1XJ7T6WE7m&page=1&high_quality=1&danmaku=0',
         desc: { en: "Context: A youth empowerment documentary produced for Guangzhou University Town's Lingnan Impression Park — a national 4A-rated scenic area. The film chronicles the '2025 Inaugural Youth Without Limits' initiative, a cultural practice program offering young creators a platform to showcase their talent.\n\nEmotional Throughline: Anchored by 'Let me be seen for the first time', the documentary follows participants through their complete journey — from registration and creative workshops to final showcase.\n\nVisual Composition: Three distinct spaces interweave — the modern skyline of Guangzhou University Town (with Canton Tower as landmark), the heritage architecture of Lingnan's ancient ancestral halls, and the vibrant youth marketplace. Dozens of young creators captured through ensemble portraiture, with both collective ceremony and intimate craft close-ups. Shot and delivered in 4K.", zh: '项目背景：为广州大学城·岭南印象园（国家级4A景区）打造的青年赋能项目纪实短片。记录「2025首届青春无价」活动——一项面向大学生的文化实践计划，为青年创作者提供展示才华的平台。\n\n情感主线：以"让我第一次被看见"为情感主线，跟拍青年参与者从报到、创作到成果展示的完整历程，展现岭南印象园作为"青年梦想主场"的全新定位。\n\n视觉构成：三大场景交织——广州大学城天际线（现代）、霍氏大宗祠等岭南古建（传统）、青年市集（创新）。群像手法记录数十位青年创作者，既有集体合影的仪式感，也有手工艺品特写的细节刻画。4K超高清画质呈现。' },
         tags: ['剪辑', '调色', '纪实', '4K'],
@@ -239,7 +247,7 @@ const Navigation: React.FC<{ lang: Lang; onToggleLang: () => void }> = ({ lang, 
             <Globe size={14} />
             <span className="font-mono text-xs uppercase">{lang === 'en' ? '中文' : 'EN'}</span>
           </button>
-          <a href="cv.html" target="_blank" rel="noopener noreferrer" className="px-5 py-2 border border-dust-gray rounded-full text-sm font-medium hover:bg-dust-gray hover:text-white transition-all duration-300 inline-block">
+          <a href={asset('cv.html')} target="_blank" rel="noopener noreferrer" className="px-5 py-2 border border-dust-gray rounded-full text-sm font-medium hover:bg-dust-gray hover:text-white transition-all duration-300 inline-block">
             {resolve(t.nav.resume, lang)}
           </a>
         </div>
@@ -300,7 +308,7 @@ const Hero: React.FC = () => {
       <div className="absolute top-[30%] left-0 w-full opacity-10 pointer-events-none">
         <svg viewBox="0 0 1440 300" className="w-full h-auto">
           <path id="mistPath" d="M0,100 C400,200 1000,0 1440,100" fill="transparent" />
-          <text className="text-4xl font-serif fill-dust-gray tracking-tighter opacity-40"><textPath ref={backgroundMistRef} href="#mistPath">{REPEATED_TEXT}</textPath></text>
+          <text className="text-4xl font-serif fill-dust-gray tracking-tighter opacity-40"><textPath ref={backgroundMistRef} href="#mistPath" startOffset="0%">{REPEATED_TEXT}</textPath></text>
         </svg>
       </div>
       <div ref={textRef} className="hero-content relative z-10 text-center px-4 max-w-5xl mx-auto perspective-1000 -mt-12">
@@ -375,11 +383,11 @@ const About: React.FC = () => {
           <p className="text-dust-gray leading-relaxed max-w-readable">{resolve(t.about.bio, lang)}</p>
           <div className="flex gap-4 pt-4">
             <button className="px-6 py-3 bg-dust-gray text-white rounded-lg hover:bg-black/80 transition-colors">{resolve(t.about.btn1, lang)}</button>
-            <a href="cv.html" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-mist rounded-lg hover:border-dust-gray transition-colors inline-block">{resolve(t.about.btn2, lang)}</a>
+            <a href={asset('cv.html')} target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-mist rounded-lg hover:border-dust-gray transition-colors inline-block">{resolve(t.about.btn2, lang)}</a>
           </div>
         </div>
         <div className="relative h-125 w-full bg-sand rounded-2xl overflow-hidden group shadow-2xl">
-          <img src="images/intro.png" alt="ZiYun Intro" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" referrerPolicy="no-referrer" />
+          <img src={asset('images/intro.png')} alt="ZiYun Intro" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" referrerPolicy="no-referrer" />
           <div className="absolute inset-0 bg-dust-gray/10 group-hover:bg-transparent transition-colors duration-700" />
         </div>
       </div>
@@ -450,7 +458,7 @@ const Projects: React.FC = () => {
           {projects.map((p: any, i: number) => (
             <div key={i} className="project-card group cursor-pointer glass-card rounded-2xl overflow-hidden relative" onClick={() => setSelectedProject(p)}>
               <div className="aspect-[4/3] bg-sand/50 overflow-hidden relative">
-                <img src={p.image} className={`w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-in-out ${p.image === '/images/project4_1.png' ? 'object-[50%_30%]' : ''}`} alt={resolve(p.title, lang)} referrerPolicy="no-referrer" loading="lazy" />
+                <img src={p.image} className={`w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-in-out ${p.image === 'images/project4_1.png' ? 'object-[50%_30%]' : ''}`} alt={resolve(p.title, lang)} referrerPolicy="no-referrer" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <div className="p-5 md:p-6">
