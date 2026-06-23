@@ -239,7 +239,7 @@ const Navigation: React.FC<{ lang: Lang; onToggleLang: () => void }> = ({ lang, 
             <Globe size={14} />
             <span className="font-mono text-xs uppercase">{lang === 'en' ? '中文' : 'EN'}</span>
           </button>
-          <a href="/cv.html" target="_blank" rel="noopener noreferrer" className="px-5 py-2 border border-dust-gray rounded-full text-sm font-medium hover:bg-dust-gray hover:text-white transition-all duration-300 inline-block">
+          <a href="cv.html" target="_blank" rel="noopener noreferrer" className="px-5 py-2 border border-dust-gray rounded-full text-sm font-medium hover:bg-dust-gray hover:text-white transition-all duration-300 inline-block">
             {resolve(t.nav.resume, lang)}
           </a>
         </div>
@@ -375,11 +375,11 @@ const About: React.FC = () => {
           <p className="text-dust-gray leading-relaxed max-w-readable">{resolve(t.about.bio, lang)}</p>
           <div className="flex gap-4 pt-4">
             <button className="px-6 py-3 bg-dust-gray text-white rounded-lg hover:bg-black/80 transition-colors">{resolve(t.about.btn1, lang)}</button>
-            <a href="/cv.html" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-mist rounded-lg hover:border-dust-gray transition-colors inline-block">{resolve(t.about.btn2, lang)}</a>
+            <a href="cv.html" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-mist rounded-lg hover:border-dust-gray transition-colors inline-block">{resolve(t.about.btn2, lang)}</a>
           </div>
         </div>
         <div className="relative h-125 w-full bg-sand rounded-2xl overflow-hidden group shadow-2xl">
-          <img src="/images/intro.png" alt="ZiYun Intro" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" referrerPolicy="no-referrer" />
+          <img src="images/intro.png" alt="ZiYun Intro" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" referrerPolicy="no-referrer" />
           <div className="absolute inset-0 bg-dust-gray/10 group-hover:bg-transparent transition-colors duration-700" />
         </div>
       </div>
