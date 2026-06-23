@@ -7,10 +7,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// Read base URL from <base> tag at runtime.
-// Vite/esbuild cannot inline this because document.querySelector is runtime-only.
-const B = document.querySelector('base')?.href || location.origin + '/';
-
 // --- i18n ---
 type Lang = 'en' | 'zh';
 
@@ -243,7 +239,7 @@ const Navigation: React.FC<{ lang: Lang; onToggleLang: () => void }> = ({ lang, 
             <Globe size={14} />
             <span className="font-mono text-xs uppercase">{lang === 'en' ? '中文' : 'EN'}</span>
           </button>
-          <a href={B + 'cv.html'} target="_blank" rel="noopener noreferrer" className="px-5 py-2 border border-dust-gray rounded-full text-sm font-medium hover:bg-dust-gray hover:text-white transition-all duration-300 inline-block">
+          <a href="cv.html" target="_blank" rel="noopener noreferrer" className="px-5 py-2 border border-dust-gray rounded-full text-sm font-medium hover:bg-dust-gray hover:text-white transition-all duration-300 inline-block">
             {resolve(t.nav.resume, lang)}
           </a>
         </div>
@@ -379,11 +375,11 @@ const About: React.FC = () => {
           <p className="text-dust-gray leading-relaxed max-w-readable">{resolve(t.about.bio, lang)}</p>
           <div className="flex gap-4 pt-4">
             <button className="px-6 py-3 bg-dust-gray text-white rounded-lg hover:bg-black/80 transition-colors">{resolve(t.about.btn1, lang)}</button>
-            <a href={B + 'cv.html'} target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-mist rounded-lg hover:border-dust-gray transition-colors inline-block">{resolve(t.about.btn2, lang)}</a>
+            <a href="cv.html" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-mist rounded-lg hover:border-dust-gray transition-colors inline-block">{resolve(t.about.btn2, lang)}</a>
           </div>
         </div>
         <div className="relative h-125 w-full bg-sand rounded-2xl overflow-hidden group shadow-2xl">
-          <img src={B + 'images/intro.png'} alt="ZiYun Intro" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" referrerPolicy="no-referrer" />
+          <img src="images/intro.png" alt="ZiYun Intro" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" referrerPolicy="no-referrer" />
           <div className="absolute inset-0 bg-dust-gray/10 group-hover:bg-transparent transition-colors duration-700" />
         </div>
       </div>
@@ -454,7 +450,7 @@ const Projects: React.FC = () => {
           {projects.map((p: any, i: number) => (
             <div key={i} className="project-card group cursor-pointer glass-card rounded-2xl overflow-hidden relative" onClick={() => setSelectedProject(p)}>
               <div className="aspect-[4/3] bg-sand/50 overflow-hidden relative">
-                <img src={B + p.image} className={`w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-in-out ${p.image === 'images/project4_1.png' ? 'object-[50%_30%]' : ''}`} alt={resolve(p.title, lang)} referrerPolicy="no-referrer" loading="lazy" />
+                <img src={p.image} className={`w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-in-out ${p.image === 'images/project4_1.png' ? 'object-[50%_30%]' : ''}`} alt={resolve(p.title, lang)} referrerPolicy="no-referrer" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <div className="p-5 md:p-6">
@@ -482,7 +478,7 @@ const Projects: React.FC = () => {
                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 }} className="w-full lg:w-3/5 lg:flex-shrink-0">
                   {selectedProject.videoFile ? (
                     <div className="w-full bg-black rounded-xl overflow-hidden shadow-2xl">
-                      <video src={B + selectedProject.videoFile} className="w-full h-auto" controls playsInline />
+                      <video src={selectedProject.videoFile} className="w-full h-auto" controls playsInline />
                     </div>
                   ) : selectedProject.videoUrl ? (
                     <div className="relative w-full bg-black rounded-xl overflow-hidden shadow-2xl" style={{ paddingBottom: '56.25%' }}>
@@ -495,11 +491,11 @@ const Projects: React.FC = () => {
                   ) : selectedProject.images ? (
                     <div className="grid grid-cols-1 gap-6">
                       {selectedProject.images.map((img: string, idx: number) => (
-                        <motion.img key={idx} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1 + 0.4 }} src={B + img} className="w-full h-auto rounded-xl shadow-lg" alt={`${resolve(selectedProject.title, lang)} ${idx + 1}`} referrerPolicy="no-referrer" />
+                        <motion.img key={idx} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1 + 0.4 }} src={img} className="w-full h-auto rounded-xl shadow-lg" alt={`${resolve(selectedProject.title, lang)} ${idx + 1}`} referrerPolicy="no-referrer" />
                       ))}
                     </div>
                   ) : (
-                    <motion.img initial={{ scale: 1.02 }} animate={{ scale: 1 }} src={B + selectedProject.image} className="w-full h-auto rounded-xl" alt={resolve(selectedProject.title, lang)} referrerPolicy="no-referrer" />
+                    <motion.img initial={{ scale: 1.02 }} animate={{ scale: 1 }} src={selectedProject.image} className="w-full h-auto rounded-xl" alt={resolve(selectedProject.title, lang)} referrerPolicy="no-referrer" />
                   )}
                 </motion.div>
 
